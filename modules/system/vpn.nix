@@ -14,7 +14,7 @@ rec {
   # TODO: system service to user service
   # TODO: apply to some users
   systemd.services.auto-vpn = {
-    enable = true;
+    enable = false;
     restartIfChanged = true;
     reloadIfChanged = true;
 
