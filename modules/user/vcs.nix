@@ -8,7 +8,7 @@ rec {
   programs.git = {
     enable = true;
 
-    extraConfig = {
+    settings = {
       user = {
         useConfigOnly = true;
         name = "${values.fullname}";
@@ -63,9 +63,9 @@ rec {
     enable = true;
     ediff = false;
 
-    settings.git = {
-      push-new-bookmarks = true;
-    };
+    # settings.git = {
+    #   push-new-bookmarks = true;
+    # };
 
     settings.user = {
       name = "${values.fullname}";
@@ -76,5 +76,9 @@ rec {
       backend = "gpg";
       behavior = "force";
     };
+  };
+
+  programs.jjui = {
+    enable = true;
   };
 }

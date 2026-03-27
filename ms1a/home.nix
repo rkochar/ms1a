@@ -25,7 +25,7 @@ in rec {
       delta
       dust
       eza
-      fastfetchMinimal
+      fastfetch
       file
       sysz
     ];
