@@ -1,39 +1,22 @@
 {
-  description = "ms1a-nix-config";
-
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # This is pointing to an unstable release.
+    # If you prefer a stable release instead, you can this to the latest number shown here: https://nixos.org/download
+    # i.e. nixos-24.11
+    # Use `nix flake update` to update the flake to the latest revision of the chosen release channel.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
-
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
-      lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
-      system = "x86_64-linux";
-    in rec {
-      nixosConfigurations."ms1a" = lib.nixosSystem {
-	inherit system;
-	specialArgs = { inherit inputs; }; # allows access to flake inputs in nixos modules
-        modules = [
-	  ./ms1a/hardware-configuration.nix
-	  ./ms1a/configuration.nix
-	  home-manager.nixosModules.home-manager
-	  (
-	    { pkgs, lib, ... }: {
-	      home-manager = {
-	        useGlobalPkgs = true; # makes hm use nixos's pkgs value
-	        useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; }; # allows access to flake inputs in hm modules
-                users.rkochar = import ./ms1a/home.nix {
-                  inherit pkgs;
-                  inherit lib;
-	        };
-	      };
-	    }
-	  )
-	];
-      };
+  outputs = { self, nixpkgs, disko, ... }@inputs: {
+    # NOTE: 'nixos' is the default hostname
+    nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
+      modules = [
+	./configuration.nix
+	disko.nixosModules.disko
+	./disko-config.nix
+      ];
     };
+  };
 }
+
