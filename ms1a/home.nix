@@ -10,6 +10,7 @@ in rec {
     ./../modules/user/vcs.nix
     ./../modules/user/zsh.nix
     ./../modules/user/vim.nix
+    ./../modules/user/applications.nix
   ];
 
   home = {
@@ -24,7 +25,7 @@ in rec {
       delta
       dust
       eza
-      fastfetchMinimal
+      fastfetch
       file
       sysz
     ];

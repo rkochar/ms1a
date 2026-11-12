@@ -5,12 +5,14 @@
     enable = true;
     defaultEditor = true;
     vimAlias = true;
+    withRuby = false;
+    withPython3 = false;
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       nvim-treesitter-parsers.nix
       papercolor-theme-slim
     ];
-    extraLuaConfig = ''
+    initLua = ''
       vim.opt.number = true
       vim.opt.ignorecase = true
       vim.opt.smartcase = true
