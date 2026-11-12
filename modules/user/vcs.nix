@@ -13,6 +13,7 @@ rec {
         useConfigOnly = true;
         name = "${values.fullname}";
         email = "${values.email}";
+        signingKey = "F12D6AFE394B9252";
       };
 
       commit = {

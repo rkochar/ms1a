@@ -11,6 +11,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./../modules/system/applications.nix
       ./../modules/system/audio.nix
       ./../modules/system/bluetooth.nix
       ./../modules/system/location.nix
@@ -56,6 +57,7 @@ in
       packages = with pkgs; [
         keepassxc  # TODO: gnome has a built-in. needed?
         tradingview
+        pdfarranger
       ];
       shell = pkgs.zsh;  # https://nixos.wiki/wiki/Command_Shell
     };
