@@ -11,6 +11,7 @@ in rec {
     ./../modules/user/zsh.nix
     ./../modules/user/vim.nix
     ./../modules/user/applications.nix
+    ./../modules/user/hyprland.nix
   ];
 
   home = {

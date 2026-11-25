@@ -11,10 +11,12 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # TODO: move into default.nix in modules/system
       ./../modules/system/applications.nix
       ./../modules/system/audio.nix
       ./../modules/system/bluetooth.nix
       ./../modules/system/location.nix
+      ./../modules/system/hyprland.nix
       # ./../modules/system/vpn.nix
     ];
 
@@ -78,6 +80,7 @@ in
   environment.systemPackages = with pkgs; [
     wget
     wireguard-tools
+    pciutils
   ];
 
   # List services that you want to enable:
