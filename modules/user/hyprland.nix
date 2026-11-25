@@ -31,12 +31,20 @@
 
     extraConfig = ''
       -- Monitors
+      -- Default monitor configuration
       hl.monitor({
         output = "",
-        mode = "preferred",
+        mode = "1920x1080@60",
         position = "auto",
-        scale = "auto",
+        scale = 1,
       })
+
+      -- hl.monitor({
+      --   output = "",
+      --   mode = "preferred",
+      --   position = "auto",
+      --   scale = "auto",
+      -- })
 
       -- Appearance and window management
       hl.config({
@@ -101,8 +109,26 @@
       bind(mod .. " + Return",
         dsp.exec_cmd("uwsm app -- kitty"))
 
+      -- bind(mod .. " + Space",
+      --   dsp.exec_cmd("fuzzel --launch-prefix='uwsm app --'"))
+
+      -- Desktop shell
       bind(mod .. " + Space",
+        dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+      
+      bind(mod .. " + S",
+        dsp.exec_cmd("noctalia msg panel-toggle control-center"))
+
+      bind(mod .. " + Escape",
+        dsp.exec_cmd("noctalia msg panel-toggle session"))
+
+      bind(mod .. " + L",
+        dsp.exec_cmd("loginctl lock-session"))
+      
+      -- Fallback launcher
+      bind(mod .. " + SHIFT + Space",
         dsp.exec_cmd("fuzzel --launch-prefix='uwsm app --'"))
+
 
       bind(mod .. " + E",
         dsp.exec_cmd("uwsm app -- nautilus"))

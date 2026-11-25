@@ -12,6 +12,7 @@ in rec {
     ./../modules/user/vim.nix
     ./../modules/user/applications.nix
     ./../modules/user/hyprland.nix
+    ./../modules/user/noctalia.nix
   ];
 
   home = {

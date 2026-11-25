@@ -5,6 +5,10 @@
     nixpkgs.url = "nixpkgs/nixos-26.05";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+    noctalia.url = "github:noctalia-dev/noctalia/v5.6.0";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
