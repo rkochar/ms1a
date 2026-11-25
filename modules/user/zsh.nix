@@ -10,8 +10,10 @@ let
     lsal = "ls -Al";
     fv = "fzf --bind 'enter:become($EDITOR {})'";
     fva ="fzf --print0 | xargs -0 -o $EDITOR";
+    jjd = "jj diff ";
     jjl = "jj log -r ::@";
     vim = "nvim";
+    nsp = "nix-shell -p ";
   };
   walkerskip = ".git,node_modules,target,.jj,result";
 in
