@@ -36,8 +36,11 @@
 
       theme = {
         mode = "dark";
+        shell_mode = "dark";
         source = "builtin";
-        builtin = "Noctalia";
+        builtin = "Tokyo-Night";
+        pure_black_dark = true;
+        sync_color_scheme = true;
       };
 
       wallpaper = {
@@ -72,6 +75,7 @@
         ];
 
         end = [
+	  "weather"
           "tray"
           "notifications"
           "network"
@@ -118,13 +122,35 @@
             timeout = 600;
             action = "screen_off";
           };
+
+          suspend = {
+            enabled = true;
+            timeout = 1800;
+            action = "lock_and_suspend";
+          };
         };
       };
 
 
       dock.enabled = false;
       desktop_widgets.enabled = false;
-      weather.enabled = false;
+      
+      location = {
+        auto_locate = false;
+        address = "Gurgaon, Haryana, India";
+      };
+
+      weather = {
+        enabled = true;
+        refresh_minutes = 30;
+        unit = "metric";
+        effects = false;
+      };
+      
+      widget.weather = {
+        show_condition = false;
+        show_temperature = true;
+      };
     };
   };
 

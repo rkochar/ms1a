@@ -5,7 +5,7 @@ in rec {
   # TODO: vim and zsh (agnostic)
   imports = [
     ./../modules/user/clitools.nix
-    ./../modules/user/flameshot.nix
+    # ./../modules/user/flameshot.nix
     ./../modules/user/home-manager.nix
     ./../modules/user/vcs.nix
     ./../modules/user/zsh.nix

@@ -52,11 +52,11 @@
           gaps_in = 5,
           gaps_out = 8,
           border_size = 2,
-          layout = "dwindle",
+          layout = "monocle",
 
           col = {
-            active_border = "rgba(94a3b8ff)",
-            inactive_border = "rgba(333840ff)",
+            active_border = "rgba(7aa2f7ff)",
+            inactive_border = "rgba(292e42ff)",
           },
 
           resize_on_border = true,
@@ -146,6 +146,13 @@
       bind(mod .. " + V",
         dsp.window.float({ action = "toggle" }))
 
+      -- Switch between applications
+      bind("ALT + Tab",
+        dsp.exec_cmd("noctalia msg window-switcher hold"))
+      
+      bind("ALT + SHIFT + Tab",
+        dsp.exec_cmd("noctalia msg window-switcher hold reverse"))
+
       -- Focus and move windows
       for _, direction in ipairs({
         "left", "right", "up", "down"
@@ -167,6 +174,21 @@
         bind(mod .. " + SHIFT + " .. key,
           dsp.window.move({ workspace = i }))
       end
+
+      -- Close all windows in the current workspace
+      bind(mod .. " + SHIFT + Q", function()
+        local workspace = hl.get_active_workspace()
+      
+        if not workspace then
+          return
+        end
+      
+        for _, window in ipairs(hl.get_windows({
+          workspace = workspace,
+        })) do
+          dsp.window.close({ window = window })()
+        end
+      end)
 
       -- Mouse-driven window management
       bind(mod .. " + mouse:272",
