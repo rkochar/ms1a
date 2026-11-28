@@ -15,5 +15,6 @@
       };
     };
   };
-  services.blueman.enable = true;
+  # TODO: Noctalia seems to provide it
+  services.blueman.enable = false;
 }

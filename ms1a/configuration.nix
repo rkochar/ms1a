@@ -11,19 +11,31 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # TODO: move into default.nix in modules/system
       ./../modules/system/applications.nix
       ./../modules/system/audio.nix
       ./../modules/system/bluetooth.nix
       ./../modules/system/location.nix
+      ./../modules/system/hyprland.nix
+      ./../modules/system/greetd.nix
       # ./../modules/system/vpn.nix
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  
-  # Zen kernel https://nixos.wiki/wiki/Linux_kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+
+    efi.canTouchEfiVariables = true;
+    timeout = 5;
+    };
+
+    # Zen kernel https://nixos.wiki/wiki/Linux_kernel
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+  };
 
   networking.hostName = "ms1a";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,8 +48,9 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # TODO: remove Gnome and gdm entirely
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = false;
   services.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
@@ -78,6 +91,7 @@ in
   environment.systemPackages = with pkgs; [
     wget
     wireguard-tools
+    pciutils
   ];
 
   # List services that you want to enable:

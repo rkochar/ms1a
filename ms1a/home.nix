@@ -5,12 +5,14 @@ in rec {
   # TODO: vim and zsh (agnostic)
   imports = [
     ./../modules/user/clitools.nix
-    ./../modules/user/flameshot.nix
+    # ./../modules/user/flameshot.nix
     ./../modules/user/home-manager.nix
     ./../modules/user/vcs.nix
     ./../modules/user/zsh.nix
     ./../modules/user/vim.nix
     ./../modules/user/applications.nix
+    ./../modules/user/hyprland.nix
+    ./../modules/user/noctalia.nix
   ];
 
   home = {
